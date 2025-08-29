@@ -17,9 +17,7 @@ app.post("/new-message", async (req, res) => {
     return res.sendStatus(200);
   }
 
-  const TELEGRAM_BOT_TOKEN =
-    process.env.TELEGRAM_BOT_TOKEN ||
-    "7783323718:AAEdlJIjN3yBKvSF3jGmWQu2OsHRnL1-J2Y";
+  const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 
   axios
     .post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
