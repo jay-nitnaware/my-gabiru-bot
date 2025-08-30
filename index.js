@@ -6,32 +6,31 @@ const axios = require("axios");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+
 app.post("/new-message", async (req, res) => {
+  
   const { message } = req.body;
 
-  if (!message || !message.text || !message.chat || !message.chat.id) {
-    return res.sendStatus(400);
-  }
+  console.log("Webhook payload:", req.body);
 
-  if (message.text.toLowerCase().indexOfs("gabiru") < 0) {
+  if (!message || !message.text || !message.chat || !message.chat.id) {
     return res.sendStatus(200);
   }
 
-  const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-
-  axios
-    .post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-      chat_id: message.chat.id,
-      text: "Meow, Meow !!",
-    })
-    .then(() => {
-      console.log("Message sent");
-      res.end("ok");
-    })
-    .catch((err) => {
-      console.error("Error :", err);
-      res.end("Error :" + err);
-    })
+  try {
+    await axios.post(
+      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+      {
+        chat_id: message.chat.id,
+        text: "Meow, Meow !!",
+      }
+    );
+    res.end("ok");
+  } catch (err) {
+    console.error("Error :", err);
+    res.end("Error :" + err);
+  }
 });
 
 app.listen(3000, () => {
