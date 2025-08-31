@@ -1,9 +1,9 @@
-const axios = require("axios");
+import axios from "axios";
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
-const geminiURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.0:generateContent";
+const geminiURL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
 
 export async function handleNewMessage(req, res) {
   const { message } = req.body;
