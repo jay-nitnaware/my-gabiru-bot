@@ -1,5 +1,5 @@
-import {createApp} from "./createApp,js"
-import { handleNewMessage } from "./handlers/messageHandler";
+import {createApp} from "./createApp.js"
+import { handleNewMessage } from "./handlers/messageHandler.js";
 
 const app = createApp();
 
