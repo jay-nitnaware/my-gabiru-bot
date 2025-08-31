@@ -1,6 +1,5 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-
+import express from "express";
+import bodyParser from "body-parser";
 
 export function createApp() {
   var app = express();
